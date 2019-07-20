@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Adam Kelly, Sam Enright, Gytis Daujotas",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.20.0",
+    "fs-extra": "^8.1.0"
+  }
 }
