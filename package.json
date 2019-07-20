@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "description": "Better Tools for Explorable Explanations",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "explorably": "./cli.js"
   },
+  "preferGlobal": true,
   "author": "Adam Kelly, Sam Enright, Gytis Daujotas",
   "license": "MIT",
   "dependencies": {
     "commander": "^2.20.0",
-    "fs-extra": "^8.1.0"
+    "fast-glob": "^3.0.4",
+    "fs-extra": "^8.1.0",
+    "marked": "^0.7.0"
   }
 }
