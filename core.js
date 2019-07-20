@@ -1,11 +1,14 @@
 const marked = require('marked')
 const glob = require('fast-glob')
 const fs = require('fs-extra')
+const path = require('path')
+const process = require('process')
 
 class Story {
     constructor() {
         this.config = { public: 'public' }
         this.pages = []
+        this.output = []
     }
 
     async build() {
@@ -13,6 +16,10 @@ class Story {
 
         await this.reset()
         await this.read()
+        await this.render()
+        await this.write()
+
+        console.log(this.output)
 
         console.timeEnd('Build Time')
     }
@@ -29,6 +36,25 @@ class Story {
             const data = await fs.readFile(file, 'utf8')
             this.pages.push({ data, file })
         }
+    }
+
+    async render() {
+        for (let i = 0; i < this.pages.length; i++) {
+            const html = marked(this.pages[i].data)
+
+            const filePath = path.join(process.cwd(), this.config.public, this.pages[i].file).replace('md', 'html')
+            this.output.push({ html, file: filePath })
+        }
+    }
+
+    async write() {
+        const output = []
+
+        for (let i = 0; i < this.output.length; i++) {
+            output.push(fs.outputFile(this.output[i].file, this.output[i].html))
+        }
+
+        return Promise.all(output)
     }
 }
 
