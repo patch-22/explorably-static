@@ -1,13 +1,25 @@
 const matter = require('gray-matter')
 const marked = require('marked')
+const renderTemplate = require('./templates')
 
 function parseFile(path) {
   const { content, data } = matter.read(path)
   return { content, data }
 }
 
-function render(markdown) {
-  return marked(markdown)
+function render({ content, data }) {
+  const contentHtml = marked(content)
+
+  return renderTemplate({
+    title: data.title,
+    description: data.description,
+    content: contentHtml
+  })
 }
 
-module.exports = { parseFile, render }
+function renderChapter(chapter) {
+  const data = parseFile(`./chapters/${chapter}/content.md`)
+  return render(data)
+}
+
+module.exports = { parseFile, render, renderChapter }

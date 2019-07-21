@@ -11,6 +11,9 @@ module.exports = async () => {
   await io.reset(publicDir)
   await io.copyStaticAssets(assetsDir, publicDir)
 
-  const data = render.parseFile('./chapters/basic-probability/content.md')
-  console.log(render.render(data.content))
+  const chapters = config.chapters || []
+  for (let i = 0; i < chapters.length; i++) {
+    const html = render.renderChapter(chapters[i])
+    await io.outputChapter(publicDir, chapters[i], html)
+  }
 }
