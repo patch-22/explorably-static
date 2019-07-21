@@ -1,6 +1,11 @@
 const matter = require('gray-matter')
-const marked = require('marked')
+const showdown = require('showdown')
 const renderTemplate = require('./templates')
+const componentExtension = require('./component-extension')
+
+const converter = new showdown.Converter({
+  extensions: [componentExtension]
+})
 
 function parseFile(path) {
   const { content, data } = matter.read(path)
@@ -8,7 +13,7 @@ function parseFile(path) {
 }
 
 function render({ content, data }) {
-  const contentHtml = marked(content)
+  const contentHtml = converter.makeHtml(content)
 
   return renderTemplate({
     title: data.title,
