@@ -1,11 +1,5 @@
-title: Seeing Theory
-description: A visual introduction to probability and statistics
-about: >
-  Seeing Theory was created by Daniel Kunin while an 
-  undergraduate at Brown University. The goal of this 
-  website is to make statistics more accessible through 
-  interactive visualizations (designed using Mike Bostock’s 
-  JavaScript library [D3.js](https://d3js.org/)).
+title: The Golden Ratio
+description: The Natural Mathematical Constant
 
 chapters:
-  - Basic Probability
+  - basic-probability
