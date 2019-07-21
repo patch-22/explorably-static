@@ -13,7 +13,8 @@ function render({ content, data }) {
   return renderTemplate({
     title: data.title,
     description: data.description,
-    content: contentHtml
+    content: contentHtml,
+    scripts: data.scripts.map(url => ({ url }))
   })
 }
 

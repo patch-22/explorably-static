@@ -25,17 +25,20 @@
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"
     ></script>
-
     <link rel="stylesheet" href="/default.css" />
   </head>
   <body>
-    <div class="markdown-body">
-      <h1>{{ title }}</h1>
-      <blockquote>
-        <p>{{ description }}</p>
-      </blockquote>
+    <div class="wrapper">
+      <div class="col-left">
+        <div class="col-left-content">{{{ content }}}</div>
+      </div>
 
-      {{{ content }}}
+      <div class="col-right" id="elem"></div>
     </div>
+
+    {{#scripts}}
+    <script src="{{ src }}"></script>
+    {{/scripts}}
+    <script src="components.js"></script>
   </body>
 </html>
