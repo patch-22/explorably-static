@@ -15,12 +15,16 @@ function parseFile(path) {
 function render({ content, data }) {
   const contentHtml = converter.makeHtml(content)
 
-  return renderTemplate({
+  const viewData = {
     title: data.title,
     description: data.description,
     content: contentHtml,
     scripts: data.scripts.map(url => ({ url }))
-  })
+  }
+
+  console.log(viewData)
+
+  return renderTemplate(viewData)
 }
 
 function renderChapter(chapter) {

@@ -37,8 +37,11 @@
     </div>
 
     {{#scripts}}
-    <script src="{{ src }}"></script>
+    <script src="{{ url }}"></script>
     {{/scripts}}
-    <script src="components.js"></script>
+    <script src="/components.js"></script>
+    <script>
+      threeCube(document.getElementById('elem'))
+    </script>
   </body>
 </html>
